@@ -1,71 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Registration Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        form {
-            margin: 20px 0;
-        }
-        label, input, select {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input, select {
-            padding: 8px;
-            width: 100%;
-            max-width: 300px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .nav-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    table {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <h1>Registration Form</h1>
-    <form>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="project">Select Project:</label>
-        <select id="project" name="project" required>
-            <option value="">-- Please choose --</option>
-            <option value="project1">Project 1</option>
-            <option value="project2">Project 2</option>
-            <option value="project3">Project 3</option>
-        </select>
-        
-        <button type="submit">Submit Registration</button>
-    </form>
-    
-    <a href="/project" class="nav-link">← Back to projects</a>
+  <h1>Registration Form</h1>
+
+  <form id="registrationForm">
+    <label>Name: <input type="text" id="name" required /></label><br /><br />
+    <label>Email: <input type="email" id="email" required /></label><br /><br />
+    <label>Password: <input type="password" id="password" required /></label><br /><br />
+    <label>Date of Birth: <input type="date" id="dob" required /></label><br /><br />
+    <label><input type="checkbox" id="acceptTerms" required /> I accept the terms and conditions</label><br /><br />
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Registered Users</h2>
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Date of Birth</th>
+        <th>Accepted Terms?</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Load script -->
+  <script src="index.js"></script>
 </body>
 </html>
