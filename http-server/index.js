@@ -1,52 +1,42 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const url = require('url');
 const minimist = require('minimist');
 
+// Parse command line arguments
 const args = minimist(process.argv.slice(2));
 const port = args.port || 3000;
 
-const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true); // parse query params
-  const pathname = parsedUrl.pathname;
+// Read files synchronously at startup for simplicity
+const homeContent = fs.readFileSync(path.join(__dirname, 'home.html'), 'utf8');
+const projectContent = fs.readFileSync(path.join(__dirname, 'projects.html'), 'utf8');
+const registrationContent = fs.readFileSync(path.join(__dirname, 'registration.html'), 'utf8');
 
-  if (pathname === '/' || pathname === '/home') {
-    sendFile(res, 'home.html');
-  } else if (pathname === '/projects') {
-    sendFile(res, 'project.html');
-  } else if (pathname === '/registration' && Object.keys(parsedUrl.query).length === 0) {
-    // No query => Show the form
-    sendFile(res, 'registration.html');
-  } else if (pathname === '/registration' && Object.keys(parsedUrl.query).length > 0) {
-    // Form submitted => Show submitted data
-    const { name, email, password, dob, terms } = parsedUrl.query;
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(`
-      <h1>Registration Successful</h1>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Date of Birth:</strong> ${dob}</p>
-      <p><strong>Accepted Terms:</strong> ${terms ? 'Yes' : 'No'}</p>
-    `);
-  } else {
-    res.writeHead(404);
-    res.end('Page not found');
-  }
+// Create server
+const server = http.createServer((req, res) => {
+    const url = req.url;
+    
+    // Set content type
+    res.setHeader('Content-Type', 'text/html');
+    
+    // Route handling
+    if (url === '/project' || url === '/projects') {
+        res.end(projectContent);
+    } else if (url === '/registration') {
+        res.end(registrationContent);
+    } else if (url === '/') {
+        res.end(homeContent);
+    } else {
+        // Handle 404 - Not Found
+        res.writeHead(404);
+        res.end('<h1>404 Not Found</h1><p>The page you requested could not be found.</p>');
+    }
 });
 
-function sendFile(res, fileName) {
-  const filePath = path.join(__dirname, fileName);
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(500);
-      return res.end(`Error loading ${fileName}`);
-    }
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(data);
-  });
-}
-
 server.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}`);
+    console.log('Available routes:');
+    console.log(`- Home: http://localhost:${port}/`);
+    console.log(`- Projects: http://localhost:${port}/project`);
+    console.log(`- Registration: http://localhost:${port}/registration`);
 });
