@@ -2,73 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registration Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    form {
-      margin-bottom: 20px;
-    }
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-      padding: 8px;
-    }
-  </style>
 </head>
 <body>
   <h1>Registration Form</h1>
-
-  <!-- ✅ FORM with method and action -->
-  <form id="registrationForm" action="/register" method="post">
-    <label>
-      Name:
-      <input type="text" id="name" name="name" required />
-    </label><br /><br />
-
-    <label>
-      Email:
-      <input type="email" id="email" name="email" required />
-    </label><br /><br />
-
-    <label>
-      Password:
-      <input type="password" id="password" name="password" required />
-    </label><br /><br />
-
-    <label>
-      Date of Birth:
-      <input type="date" id="dob" name="dob" required />
-    </label><br /><br />
-
-    <label>
-      <input type="checkbox" id="acceptTerms" name="acceptTerms" required />
-      Accept terms and conditions
-    </label><br /><br />
-
+  <form id="registrationForm">
+    <label>Name: <input type="text" id="name" required></label><br><br>
+    <label>Email: <input type="email" id="email" required></label><br><br>
+    <label>Password: <input type="password" id="password" required></label><br><br>
+    <label>Date of Birth: <input type="date" id="dob" required></label><br><br>
+    <label><input type="checkbox" id="acceptTerms" required> Accept Terms</label><br><br>
     <button type="submit">Submit</button>
   </form>
 
   <h2>Registered Users</h2>
-  <table id="userTable">
+  <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Date of Birth</th>
-        <th>Accepted Terms?</th>
+        <th>Name</th><th>Email</th><th>Password</th><th>DOB</th><th>Accepted</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- Table content will be added by JavaScript -->
-    </tbody>
+    <tbody></tbody>
   </table>
-
-  <!-- ✅ Link JavaScript file -->
-  <script src="index.js"></script>
 </body>
 </html>
