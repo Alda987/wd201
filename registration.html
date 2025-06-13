@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Form</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="registrationForm">
+    <label>Name: <input type="text" id="name" required></label><br><br>
+    <label>Email: <input type="email" id="email" required></label><br><br>
+    <label>Password: <input type="password" id="password" required></label><br><br>
+    <label>Date of Birth: <input type="date" id="dob" required></label><br><br>
+    <label><input type="checkbox" id="acceptTerms" required> Accept Terms</label><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Registered Users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Email</th><th>Password</th><th>DOB</th><th>Accepted</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody"></tbody>
+  </table>
+
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Stop form from refreshing the page
+
+      // Get input values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const dob = document.getElementById('dob').value;
+      const accepted = document.getElementById('acceptTerms').checked ? "Yes" : "No";
+
+      // Create new row
+      const tableBody = document.getElementById('userTableBody');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${password}</td>
+        <td>${dob}</td>
+        <td>${accepted}</td>
+      `;
+      tableBody.appendChild(newRow);
+
+      // Optionally clear form
+      this.reset();
+    });
+  </script>
+</body>
+</html>
