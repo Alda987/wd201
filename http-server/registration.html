@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registration Form</title>
   <style>
     body {
@@ -17,20 +17,38 @@
       border-collapse: collapse;
       padding: 8px;
     }
-    table {
-      width: 100%;
-    }
   </style>
 </head>
 <body>
   <h1>Registration Form</h1>
 
-  <form id="registrationForm">
-    <label>Name: <input type="text" id="name" required /></label><br /><br />
-    <label>Email: <input type="email" id="email" required /></label><br /><br />
-    <label>Password: <input type="password" id="password" required /></label><br /><br />
-    <label>Date of Birth: <input type="date" id="dob" required /></label><br /><br />
-    <label><input type="checkbox" id="acceptTerms" required /> I accept the terms and conditions</label><br /><br />
+  <!-- ✅ FORM with method and action -->
+  <form id="registrationForm" action="/register" method="post">
+    <label>
+      Name:
+      <input type="text" id="name" name="name" required />
+    </label><br /><br />
+
+    <label>
+      Email:
+      <input type="email" id="email" name="email" required />
+    </label><br /><br />
+
+    <label>
+      Password:
+      <input type="password" id="password" name="password" required />
+    </label><br /><br />
+
+    <label>
+      Date of Birth:
+      <input type="date" id="dob" name="dob" required />
+    </label><br /><br />
+
+    <label>
+      <input type="checkbox" id="acceptTerms" name="acceptTerms" required />
+      Accept terms and conditions
+    </label><br /><br />
+
     <button type="submit">Submit</button>
   </form>
 
@@ -45,10 +63,12 @@
         <th>Accepted Terms?</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <!-- Table content will be added by JavaScript -->
+    </tbody>
   </table>
 
-  <!-- Load script -->
+  <!-- ✅ Link JavaScript file -->
   <script src="index.js"></script>
 </body>
 </html>
